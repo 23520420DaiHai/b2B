@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sơ đồ tư duy B2B – Lazada (Stage 1)</title>
+    <style>
+      :root {
+        --bg: #fff7fb;           /* light pastel */
+        --panel: #ffffff;        /* white */
+        --panel-2: #fff5f7;      /* very light pink */
+        --text: #374151;         /* gray-700 */
+        --muted: #6b7280;        /* gray-500 */
+        --brand: #ec4899;        /* pink-500 */
+        --brand-2: #fbcfe8;      /* pink-200 */
+        --accent: #ec4899;       /* pink-500 */
+        --danger: #f43f5e;       /* rose-500 */
+        --shadow: 0 8px 18px rgba(0,0,0,.12);
+        --radius: 14px;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        color: var(--text);
+        background: radial-gradient(1200px 800px at 10% 10%, #ffe4f1, transparent),
+                    radial-gradient(1000px 600px at 90% 20%, #ffdced, transparent),
+                    linear-gradient(180deg, #fff7fb 0%, #ffffff 100%);
+      }
+
+      .page {
+        min-height: 100%;
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+
+      header {
+        padding: 24px 16px 8px;
+        text-align: center;
+      }
+
+      .title {
+        margin: 0 0 6px;
+        font-size: clamp(20px, 2.8vw, 32px);
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        background: linear-gradient(90deg, #f472b6 0%, var(--brand) 45%, var(--brand-2) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .mindmap-wrap {
+        position: relative;
+        padding: 20px 16px 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* SVG layer for connector lines */
+      .links {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: visible;
+        filter: drop-shadow(0 1px 0 rgba(236,72,153,.12));
+      }
+
+      /* Grid layout: left column (branches), center node, right column (branches) */
+      .mindmap {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr minmax(260px, 320px) 1fr;
+        grid-auto-rows: minmax(120px, auto);
+        gap: 22px 26px;
+        align-items: center;
+      }
+
+      /* Center node */
+      .node.center {
+        grid-column: 2;
+        grid-row: 2;
+        background: linear-gradient(180deg, #ffffff, var(--panel-2));
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        padding: 18px 16px;
+        text-align: center;
+        position: relative;
+      }
+
+      .node.center::after {
+        content: "";
+        position: absolute;
+        inset: -14px;
+        border-radius: 26px;
+        background: radial-gradient(220px 80px at 50% -10%, rgba(236,72,153,.14), transparent 60%),
+                    radial-gradient(240px 80px at 50% 110%, rgba(251,207,232,.16), transparent 60%);
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .center .badge {
+        display: inline-block;
+        font-size: 11px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: rgba(236, 72, 153, .10);
+        color: var(--brand);
+        border: 1px solid rgba(236,72,153,.25);
+        margin-bottom: 8px;
+      }
+
+      .center h2 {
+        margin: 4px 0 2px;
+        font-size: 18px;
+      }
+
+      .center p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      /* Branch card */
+      .branch {
+        background: linear-gradient(180deg, var(--panel), var(--panel-2));
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 12px 12px 10px;
+        position: relative;
+        transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+      }
+
+      .branch::after { /* subtle glow */
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        background: radial-gradient(200px 60px at 20% -20%, rgba(236,72,153,.08), transparent 60%),
+                    radial-gradient(200px 60px at 80% -20%, rgba(251,207,232,.18), transparent 60%);
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .branch:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 24px rgba(236,72,153,.10);
+        border-color: rgba(236,72,153,.24);
+      }
+
+      .branch-header {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        user-select: none;
+        padding: 2px 2px;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        box-shadow: 0 0 0 3px rgba(236,72,153,.15);
+        flex: 0 0 auto;
+      }
+
+      .branch-title {
+        font-weight: 700;
+        font-size: 15px;
+      }
+
+      .branch-sub {
+        margin-left: auto;
+        color: var(--brand);
+        font-size: 12px;
+        padding: 3px 8px;
+        border-radius: 999px;
+        background: rgba(236,72,153,.10);
+        border: 1px solid rgba(236,72,153,.24);
+      }
+
+      .chevron {
+        margin-left: 8px;
+        transition: transform .2s ease;
+        background: rgba(236,72,153,.10);
+        border: 1px solid rgba(236,72,153,.24);
+        border-radius: 999px;
+        padding: 2px;
+        color: var(--brand);
+      }
+
+      .branch[aria-expanded="false"] .chevron {
+        transform: rotate(-90deg);
+      }
+
+      .branch-content {
+        position: relative;
+        z-index: 1;
+        margin-top: 10px;
+        padding-top: 8px;
+        border-top: 1px dashed rgba(0,0,0,0.08);
+        color: #374151;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height .28s ease, opacity .22s ease;
+      }
+
+      .branch[aria-expanded="true"] .branch-content {
+        max-height: 800px;
+        opacity: 1;
+      }
+
+      .branch-content ul {
+        margin: 8px 0 0 0;
+        padding-left: 0;
+        list-style: none;
+      }
+
+      .branch-content li {
+        margin: 6px 0;
+        line-height: 1.5;
+        position: relative;
+        padding-left: 18px;
+      }
+
+      .branch-content li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.9em;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        box-shadow: 0 0 0 2px rgba(236,72,153,.15);
+        transform: translateY(-50%);
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: rgba(236,72,153,.10);
+        color: var(--accent);
+        border: 1px solid rgba(236,72,153,.28);
+        font-size: 11px;
+        margin: 4px 6px 0 0;
+      }
+
+      .note {
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 8px;
+      }
+
+      /* Placement of branches around the center node */
+      .left   { grid-column: 1; }
+      .right  { grid-column: 3; }
+      .row-1  { grid-row: 1; }
+      .row-2  { grid-row: 2; }
+      .row-3  { grid-row: 3; }
+      .row-4  { grid-row: 4; }
+
+      /* Small screens: stack layout */
+      @media (max-width: 860px) {
+        .mindmap {
+          grid-template-columns: 1fr;
+          grid-auto-rows: auto;
+        }
+        .node.center { grid-column: 1; grid-row: auto; }
+        .left, .right { grid-column: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1 class="title">Sơ đồ tư duy – Lazada e-Business</h1>
+        <p class="subtitle">Tổng quan: giá trị, vận hành, tăng trưởng, công nghệ, tài chính</p>
+      </header>
+
+      <main class="mindmap-wrap">
+        <!-- Connector layer -->
+        <svg class="links" aria-hidden="true"></svg>
+
+        <section class="mindmap" id="mindmap">
+          <!-- Center node -->
+          <div class="node center" id="center-node">
+            <span class="badge">Trung tâm</span>
+            <h2>Lazada e-Business</h2>
+            <p>Tổng quan chiến lược, vận hành và tăng trưởng</p>
+          </div>
+
+          <!-- Branches: Left side -->
+          <article class="branch left row-1" aria-expanded="true">
+            <div class="branch-header">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="branch-title">Giá trị</span>
+              <span class="branch-sub">Cốt lõi</span>
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="branch-content">
+              <ul>
+                <li>Hàng đa dạng</li>
+                <li>Giao nhanh</li>
+                <li>Giá tốt &amp; khuyến mãi</li>
+                <li>Thanh toán an toàn + loyalty</li>
+                <li>Hỗ trợ người bán</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="branch left row-2" aria-expanded="true">
+            <div class="branch-header">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="branch-title">Vận hành</span>
+              <span class="branch-sub">Ops</span>
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="branch-content">
+              <ul>
+                <li>Fulfillment: FBL &amp; 3PL</li>
+                <li>Thanh toán: ví/thẻ, COD giảm dần</li>
+                <li>CS: đổi trả 15–30 ngày</li>
+                <li>Chống hàng giả</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="branch left row-3" aria-expanded="true">
+            <div class="branch-header">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="branch-title">Tăng trưởng</span>
+              <span class="branch-sub">Growth</span>
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="branch-content">
+              <ul>
+                <li>AARRR (Acq/Act/Ret/Rev/Ref)</li>
+                <li>Mega Campaigns (3.3/6.6/11.11)</li>
+                <li>Live, UGC, Gamification</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="branch left row-4" aria-expanded="true">
+            <div class="branch-header">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="branch-title">Công nghệ &amp; Dữ liệu</span>
+              <span class="branch-sub">Tech &amp; Data</span>
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="branch-content">
+              <ul>
+                <li>Cloud + microservices</li>
+                <li>Search/Recommend (AI/ML)</li>
+                <li>Risk/Fraud realtime</li>
+                <li>SLO 99.95%</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Branches: Right side -->
+          <article class="branch right row-1" aria-expanded="true">
+            <div class="branch-header">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="branch-title">Tài chính &amp; KPI</span>
+              <span class="branch-sub">Finance</span>
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="branch-content">
+              <ul>
+                <li>Take rate &amp; Ads revenue</li>
+                <li>CM2 ≥ 2–4% GMV</li>
+                <li>KPI: GMV, AOV, OTD, NPS</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="branch right row-2" aria-expanded="true">
+            <div class="branch-header">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="branch-title">Rủi ro &amp; Pháp lý</span>
+              <span class="branch-sub">Risk &amp; Legal</span>
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="branch-content">
+              <ul>
+                <li>Hàng giả &amp; gian lận</li>
+                <li>Dữ liệu cá nhân, thuế TMĐT</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="branch right row-3" aria-expanded="true">
+            <div class="branch-header">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="branch-title">Roadmap 12 tháng</span>
+              <span class="branch-sub">Roadmap</span>
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="branch-content">
+              <ul>
+                <li>Q1: Loyalty, vector search</li>
+                <li>Q2: FBL↑, COD −10pp</li>
+                <li>Q3: BNPL, OTD ≥95%</li>
+                <li>Q4: Ads ≥20% DT, auto-scale</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="branch right row-4" aria-expanded="true">
+            <div class="branch-header">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="branch-title">Tổ chức</span>
+              <span class="branch-sub">Org</span>
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="branch-content">
+              <ul>
+                <li>GM + 5 trụ</li>
+                <li>Squad theo hành trình</li>
+                <li>COE: AI/ML, SRE</li>
+              </ul>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <!-- Next page button -->
+    <style>
+      .nav-next { position: fixed; right: 16px; bottom: 16px; z-index: 1000; }
+      .nav-next a {
+        display: inline-flex; align-items: center; gap: 8px;
+        text-decoration: none; font-weight: 700; font-size: 13px;
+        color: #ec4899; background: rgba(236,72,153,.10);
+        border: 1px solid rgba(236,72,153,.28); border-radius: 999px;
+        padding: 10px 14px; box-shadow: 0 8px 16px rgba(0,0,0,.08);
+        transition: transform .15s ease, box-shadow .15s ease;
+      }
+      .nav-next a:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(0,0,0,.10); }
+    </style>
+    <div class="nav-next">
+      <a href="index3.html" title="Sang trang: index3">
+        <span>Trang tiếp</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <script>
+      // Collapse / expand branches with smooth animation
+      document.querySelectorAll('.branch').forEach(function(branch) {
+        const header = branch.querySelector('.branch-header');
+        const content = branch.querySelector('.branch-content');
+        function setExpanded(expanded) {
+          branch.setAttribute('aria-expanded', String(expanded));
+          if (expanded) {
+            // expand to content height
+            content.style.maxHeight = content.scrollHeight + 'px';
+            content.style.opacity = '1';
+          } else {
+            content.style.maxHeight = '0px';
+            content.style.opacity = '0';
+          }
+          // redraw after transition
+          setTimeout(drawLinks, 200);
+        }
+        header.addEventListener('click', function() {
+          const expanded = branch.getAttribute('aria-expanded') !== 'true';
+          setExpanded(expanded);
+        });
+        // initial state
+        const startExpanded = branch.getAttribute('aria-expanded') === 'true';
+        if (startExpanded) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          content.style.opacity = '1';
+        } else {
+          content.style.maxHeight = '0px';
+          content.style.opacity = '0';
+        }
+      });
+
+      // Draw connector lines from center node to each branch header using SVG
+      function drawLinks() {
+        const svg = document.querySelector('.links');
+        const wrap = document.querySelector('.mindmap-wrap');
+        const center = document.getElementById('center-node');
+        if (!svg || !wrap || !center) return;
+
+        // Clear existing
+        while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+        const wrapRect = wrap.getBoundingClientRect();
+        const centerRect = center.getBoundingClientRect();
+        const centerX = centerRect.left + centerRect.width / 2 - wrapRect.left;
+        const centerY = centerRect.top + centerRect.height / 2 - wrapRect.top;
+
+        // helper to create a smooth path between two points
+        function addPath(x1, y1, x2, y2) {
+          const dx = (x2 - x1) * 0.35;
+          const control1x = x1 + dx;
+          const control1y = y1;
+          const control2x = x2 - dx;
+          const control2y = y2;
+          const d = `M ${x1} ${y1} C ${control1x} ${control1y}, ${control2x} ${control2y}, ${x2} ${y2}`;
+          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          path.setAttribute('d', d);
+          path.setAttribute('fill', 'none');
+          path.setAttribute('stroke', 'url(#grad)');
+          path.setAttribute('stroke-width', '1.8');
+          path.setAttribute('stroke-opacity', '0.8');
+          path.setAttribute('stroke-linecap', 'round');
+          svg.appendChild(path);
+        }
+
+        // define gradient once
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        const grad = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+        grad.setAttribute('id', 'grad');
+        grad.setAttribute('x1', '0%'); grad.setAttribute('y1', '0%');
+        grad.setAttribute('x2', '100%'); grad.setAttribute('y2', '0%');
+        const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stop1.setAttribute('offset', '0%'); stop1.setAttribute('stop-color', '#ec4899');
+        const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stop2.setAttribute('offset', '100%'); stop2.setAttribute('stop-color', '#fbcfe8');
+        grad.appendChild(stop1); grad.appendChild(stop2); defs.appendChild(grad); svg.appendChild(defs);
+
+        // compute endpoints for each visible branch
+        document.querySelectorAll('.branch').forEach(function(branch) {
+          const expanded = branch.getAttribute('aria-expanded') === 'true';
+          const header = branch.querySelector('.branch-header');
+          const rect = header.getBoundingClientRect();
+          const x2 = rect.left + rect.width / 2 - wrapRect.left;
+          const y2 = rect.top + rect.height / 2 - wrapRect.top;
+          // shift start point slightly toward the branch side for nicer curves
+          const isRight = branch.classList.contains('right');
+          const startX = centerX + (isRight ? 70 : -70);
+          const startY = centerY;
+          addPath(startX, startY, x2, y2);
+        });
+      }
+
+      const ro = new ResizeObserver(function() { drawLinks(); });
+      ro.observe(document.body);
+      window.addEventListener('load', drawLinks);
+      window.addEventListener('resize', drawLinks);
+      // slight delay to ensure fonts/layout settled
+      setTimeout(drawLinks, 60);
+    </script>
+  </body>
+</html>
+
+

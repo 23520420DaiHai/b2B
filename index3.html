@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Infographic – Logistics Lazada (Pastel Pink)</title>
+    <style>
+      :root {
+        --bg: #fff7fb;         /* pastel background */
+        --surface: #ffffff;    /* white card */
+        --surface-2: #fff1f7;  /* very light pink */
+        --ink: #334155;        /* slate-700 */
+        --muted: #6b7280;      /* gray-500 */
+        --brand: #ec4899;      /* pink-500 */
+        --brand-2: #fbcfe8;    /* pink-200 */
+        --ok: #10b981;         /* green */
+        --shadow: 0 10px 24px rgba(0,0,0,.10);
+        --radius: 16px;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body { height: 100%; }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+        color: var(--ink);
+        background:
+          radial-gradient(1000px 600px at 10% 0%, #ffe5f3, transparent 60%),
+          radial-gradient(800px 500px at 90% 0%, #ffe9f5, transparent 60%),
+          linear-gradient(180deg, var(--bg), #ffffff 60%);
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 24px 16px 60px;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .title {
+        margin: 0 0 4px;
+        font-size: clamp(22px, 3.2vw, 36px);
+        font-weight: 800;
+        letter-spacing: .2px;
+        background: linear-gradient(90deg, #f472b6 0%, var(--brand) 45%, var(--brand-2) 100%);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+      }
+
+      .subtitle { margin: 0; color: var(--muted); font-size: 14px; }
+
+      .section {
+        background: linear-gradient(180deg, var(--surface), var(--surface-2));
+        border: 1px solid rgba(0,0,0,.06);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 18px 16px 16px;
+        margin-top: 18px;
+      }
+
+      .section h2 { margin: 0 0 10px; font-size: 18px; }
+      .lead { color: var(--muted); margin: 8px 0 12px; }
+
+      /* Section 1: flow boxes with arrows */
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        align-items: center;
+      }
+
+      .flow .box {
+        background: #fff;
+        border: 1px solid rgba(0,0,0,.06);
+        border-radius: 14px;
+        padding: 16px 10px;
+        text-align: center;
+        position: relative;
+      }
+
+      .flow .box h3 {
+        margin: 0 0 6px; font-size: 14px; color: var(--brand); font-weight: 800;
+      }
+      .flow .box p { margin: 0; font-size: 12px; color: var(--ink); }
+
+      .arrow {
+        display: flex; justify-content: center; align-items: center;
+      }
+
+      /* Section 2: three sub-cards */
+      .three {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .card {
+        background: #fff;
+        border: 1px solid rgba(0,0,0,.06);
+        border-radius: 14px;
+        padding: 14px 12px;
+      }
+
+      .label {
+        display: inline-block;
+        background: rgba(236,72,153,.10);
+        border: 1px solid rgba(236,72,153,.22);
+        color: var(--brand);
+        font-size: 12px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        margin-bottom: 8px;
+      }
+
+      .card h3 { margin: 0 0 6px; font-size: 15px; }
+      .card p { margin: 6px 0; color: var(--muted); font-size: 13px; }
+      .card ul { margin: 8px 0 0; padding-left: 0; list-style: none; }
+      .card li { position: relative; padding-left: 18px; margin: 6px 0; }
+      .card li::before {
+        content: ""; position: absolute; left: 0; top: .7em; width: 8px; height: 8px; border-radius: 50%;
+        background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: 0 0 0 2px rgba(236,72,153,.15);
+        transform: translateY(-50%);
+      }
+
+      /* Section 3: technology grid */
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+      .tech h3 { margin: 0 0 6px; font-size: 15px; }
+
+      /* Section 4: comparison table */
+      .table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,.08);
+        border-radius: 12px;
+        background: #fff;
+      }
+      .table th, .table td { padding: 10px 12px; text-align: left; }
+      .table thead th {
+        background: linear-gradient(180deg, var(--surface), var(--surface-2));
+        color: var(--brand);
+        font-weight: 800; font-size: 13px;
+        border-bottom: 1px solid rgba(0,0,0,.08);
+      }
+      .table tbody tr + tr td { border-top: 1px solid rgba(0,0,0,.06); }
+
+      /* Section 5: checklist */
+      .checklist { padding-left: 0; list-style: none; }
+      .checklist li { position: relative; padding-left: 22px; margin: 8px 0; }
+      .checklist li::before {
+        content: ""; position: absolute; left: 0; top: .75em; transform: translateY(-50%);
+        width: 14px; height: 14px; border-radius: 4px; border: 2px solid var(--brand);
+        background: linear-gradient(180deg, var(--brand-2), #fff);
+        box-shadow: 0 2px 0 rgba(0,0,0,.04) inset;
+      }
+      .checklist li::after {
+        content: ""; position: absolute; left: 4px; top: .72em; width: 6px; height: 3px; border-left: 2px solid var(--brand); border-bottom: 2px solid var(--brand); transform: translateY(-50%) rotate(-45deg);
+      }
+
+      /* arrows svg color */
+      .stroke-brand { stroke: var(--brand); }
+      .fill-brand { fill: var(--brand); }
+
+      @media (max-width: 900px) {
+        .flow { grid-template-columns: 1fr; }
+        .three { grid-template-columns: 1fr; }
+        .grid-2 { grid-template-columns: 1fr; }
+      }
+      .nav-next { position: fixed; right: 16px; bottom: 16px; z-index: 1000; }
+      .nav-next a {
+        display: inline-flex; align-items: center; gap: 8px;
+        text-decoration: none; font-weight: 700; font-size: 13px;
+        color: #ec4899; background: rgba(236,72,153,.10);
+        border: 1px solid rgba(236,72,153,.28); border-radius: 999px;
+        padding: 10px 14px; box-shadow: 0 8px 16px rgba(0,0,0,.08);
+        transition: transform .15s ease, box-shadow .15s ease;
+      }
+      .nav-next a:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(0,0,0,.10); }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 class="title">Mô hình Logistics tích hợp của Lazada</h1>
+        <p class="subtitle">Infographic tông hồng pastel – tổng quan, cấu trúc, công nghệ, mô hình, ưu điểm</p>
+      </header>
+
+      <!-- 1. Overview -->
+      <section class="section">
+        <h2>🏗️ 1. Tổng quan mô hình logistics của Lazada</h2>
+        <p class="lead">Lazada vận hành mô hình logistics tích hợp – tự xây dựng và quản lý toàn bộ chuỗi thay vì thuê ngoài toàn bộ.</p>
+        <div class="flow">
+          <div class="box">
+            <h3>Fulfillment</h3>
+            <p>Xử lý đơn hàng</p>
+          </div>
+          <div class="arrow" aria-hidden="true">
+            <svg width="60" height="22" viewBox="0 0 60 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="stroke-brand" d="M2 11 H48" stroke-width="3" stroke-linecap="round"/>
+              <path class="fill-brand" d="M60 11 L46 2 L46 20 Z"/>
+            </svg>
+          </div>
+          <div class="box">
+            <h3>Transportation</h3>
+            <p>Vận chuyển</p>
+          </div>
+          <div class="arrow" aria-hidden="true">
+            <svg width="60" height="22" viewBox="0 0 60 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="stroke-brand" d="M2 11 H48" stroke-width="3" stroke-linecap="round"/>
+              <path class="fill-brand" d="M60 11 L46 2 L46 20 Z"/>
+            </svg>
+          </div>
+          <div class="box">
+            <h3>Last Mile</h3>
+            <p>Giao hàng chặng cuối</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Structure -->
+      <section class="section">
+        <h2>🚚 2. Cấu trúc hệ thống logistics của Lazada</h2>
+        <div class="three">
+          <div class="card">
+            <span class="label">a. Fulfillment Center</span>
+            <h3>Trung tâm hoàn tất đơn hàng</h3>
+            <p>Kho trung tâm do Lazada xây dựng và vận hành. Người bán có thể gửi hàng (FBL).</p>
+            <ul>
+              <li>Lưu trữ hàng trong kho</li>
+              <li>Đóng gói khi có đơn</li>
+              <li>Bàn giao cho vận chuyển nội bộ</li>
+            </ul>
+            <p><strong>→</strong> Giảm thời gian xử lý xuống vài giờ đến 1 ngày.</p>
+          </div>
+          <div class="card">
+            <span class="label">b. LEL Express</span>
+            <h3>Hệ thống vận chuyển nội bộ</h3>
+            <ul>
+              <li>Hubs trung chuyển tại các tỉnh, thành</li>
+              <li>Sorting Centers dùng AI &amp; robot</li>
+              <li>Delivery Riders phủ rộng khắp Việt Nam</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="label">c. Last-mile delivery</span>
+            <h3>Giao hàng chặng cuối</h3>
+            <ul>
+              <li>LEL đảm nhận phần lớn đơn hàng đô thị</li>
+              <li>Vùng sâu: kết hợp Viettel Post, GHN, J&amp;T…</li>
+              <li>Định tuyến thông minh tối ưu thời gian &amp; chi phí</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Technology -->
+      <section class="section">
+        <h2>💻 3. Công nghệ hỗ trợ logistics của Lazada</h2>
+        <div class="grid-2">
+          <div class="card tech">
+            <h3>Lazada Seller Center</h3>
+            <p>Quản lý tồn kho, đơn hàng, vận chuyển cho người bán.</p>
+          </div>
+          <div class="card tech">
+            <h3>Lazada Logistics Platform</h3>
+            <p>Kết nối kho → phân loại → giao hàng → cập nhật trạng thái.</p>
+          </div>
+          <div class="card tech">
+            <h3>AI &amp; Big Data</h3>
+            <ul>
+              <li>Dự đoán nhu cầu theo khu vực</li>
+              <li>Tối ưu vị trí lưu kho, phân luồng hàng</li>
+              <li>Gợi ý tuyến đường nhanh nhất</li>
+            </ul>
+          </div>
+          <div class="card tech">
+            <h3>Tracking thời gian thực</h3>
+            <p>Khách theo dõi trạng thái từng bước của đơn hàng.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Models table -->
+      <section class="section">
+        <h2>💡 4. Hai mô hình logistics chính với người bán</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Mô hình</th>
+              <th>Mô tả</th>
+              <th>Ưu điểm</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>FBL (Fulfilled by Lazada)</strong></td>
+              <td>Hàng gửi trong kho Lazada; Lazada xử lý đóng gói &amp; giao hàng</td>
+              <td>Giao nhanh, giảm rủi ro, tăng niềm tin khách hàng</td>
+            </tr>
+            <tr>
+              <td><strong>Non-FBL / Dropship</strong></td>
+              <td>Người bán tự đóng gói; Lazada nhận để giao</td>
+              <td>Linh hoạt, chi phí kho thấp, phù hợp shop nhỏ</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5. Advantages -->
+      <section class="section">
+        <h2>📈 5. Ưu điểm của mô hình logistics Lazada</h2>
+        <ul class="checklist">
+          <li>Kiểm soát tốt chất lượng và tốc độ giao hàng</li>
+          <li>Giảm tỷ lệ hoàn đơn và khiếu nại</li>
+          <li>Tối ưu chi phí vận hành dài hạn</li>
+        </ul>
+      </section>
+    </div>
+    <div class="nav-next">
+      <a href="index2.html" title="Sang trang: index2">
+        <span>Trang tiếp</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </body>
+  </html>
+
+
