@@ -289,13 +289,50 @@
         .node.center { grid-column: 1; grid-row: auto; }
         .left, .right { grid-column: 1; }
       }
+
+      /* Dark table section (as in screenshot) */
+      .eb-section {
+        background: linear-gradient(180deg, #0f172a, #0b1220);
+        border: 1px solid rgba(255,255,255,.06);
+        border-radius: 14px;
+        box-shadow: 0 12px 28px rgba(0,0,0,.35);
+        padding: 16px 14px 18px;
+        color: #e5e7eb;
+      }
+      .eb-title {
+        margin: 0 0 10px;
+        font-size: 18px;
+        font-weight: 800;
+      }
+      .eb-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: transparent;
+      }
+      .eb-table thead th {
+        text-align: left;
+        padding: 12px 12px;
+        font-size: 13px;
+        color: #f3f4f6;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+      }
+      .eb-table tbody td {
+        padding: 14px 12px;
+        vertical-align: top;
+        color: #e5e7eb;
+        border-top: 1px solid rgba(255,255,255,.06);
+      }
+      .eb-table tbody tr:first-child td { border-top: none; }
+      .eb-kicker {
+        display: inline-flex; align-items: center; gap: 8px; color: #a7f3d0; font-weight: 700; margin-right: 6px;
+      }
     </style>
   </head>
   <body>
     <div class="page">
       <header>
-        <h1 class="title">Sơ đồ tư duy – Lazada e-Business</h1>
-        <p class="subtitle">Tổng quan: giá trị, vận hành, tăng trưởng, công nghệ, tài chính</p>
+        <h1 class="title">Các thành phần chính trong mô hình E‑Business Lazada</h1>
+        <p class="subtitle">Mindmap: Thành phần · Mô tả · Ví dụ cụ thể</p>
       </header>
 
       <main class="mindmap-wrap">
@@ -306,141 +343,96 @@
           <!-- Center node -->
           <div class="node center" id="center-node">
             <span class="badge">Trung tâm</span>
-            <h2>Lazada e-Business</h2>
-            <p>Tổng quan chiến lược, vận hành và tăng trưởng</p>
+            <h2>E‑Business Lazada</h2>
+            <p>Các thành phần cốt lõi và ví dụ cụ thể</p>
           </div>
 
-          <!-- Branches: Left side -->
+          <!-- Left side -->
           <article class="branch left row-1" aria-expanded="true">
             <div class="branch-header">
               <span class="dot" aria-hidden="true"></span>
-              <span class="branch-title">Giá trị</span>
-              <span class="branch-sub">Cốt lõi</span>
+              <span class="branch-title">Nền tảng TMĐT</span>
+              <span class="branch-sub">Website &amp; App</span>
               <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </div>
             <div class="branch-content">
+              <p>Trung tâm giao dịch nơi người mua – người bán tương tác.</p>
               <ul>
-                <li>Hàng đa dạng</li>
-                <li>Giao nhanh</li>
-                <li>Giá tốt &amp; khuyến mãi</li>
-                <li>Thanh toán an toàn + loyalty</li>
-                <li>Hỗ trợ người bán</li>
+                <li>Ví dụ: Lazada App</li>
+                <li>Ví dụ: lazada.vn</li>
               </ul>
+              <span class="tag">Website</span>
+              <span class="tag">Mobile App</span>
             </div>
           </article>
 
           <article class="branch left row-2" aria-expanded="true">
             <div class="branch-header">
               <span class="dot" aria-hidden="true"></span>
-              <span class="branch-title">Vận hành</span>
-              <span class="branch-sub">Ops</span>
+              <span class="branch-title">E‑Payment</span>
+              <span class="branch-sub">Thanh toán</span>
               <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </div>
             <div class="branch-content">
               <ul>
-                <li>Fulfillment: FBL &amp; 3PL</li>
-                <li>Thanh toán: ví/thẻ, COD giảm dần</li>
-                <li>CS: đổi trả 15–30 ngày</li>
-                <li>Chống hàng giả</li>
+                <li>Tích hợp thanh toán online &amp; COD</li>
+                <li>Ví dụ: Lazada Wallet, thẻ ngân hàng</li>
+                <li>Ví dụ: MoMo, ZaloPay</li>
               </ul>
+              <span class="tag">Thanh toán</span>
             </div>
           </article>
 
           <article class="branch left row-3" aria-expanded="true">
             <div class="branch-header">
               <span class="dot" aria-hidden="true"></span>
-              <span class="branch-title">Tăng trưởng</span>
-              <span class="branch-sub">Growth</span>
+              <span class="branch-title">E‑Logistics</span>
+              <span class="branch-sub">Kho &amp; vận chuyển</span>
               <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </div>
             <div class="branch-content">
               <ul>
-                <li>AARRR (Acq/Act/Ret/Rev/Ref)</li>
-                <li>Mega Campaigns (3.3/6.6/11.11)</li>
-                <li>Live, UGC, Gamification</li>
+                <li>Tự vận hành mạng lưới kho, vận chuyển, giao nhận</li>
+                <li>Ví dụ: Lazada Express (LEX)</li>
+                <li>Ví dụ: Fulfillment by Lazada (FBL)</li>
               </ul>
+              <span class="tag">LEX</span>
+              <span class="tag">FBL</span>
             </div>
           </article>
 
-          <article class="branch left row-4" aria-expanded="true">
-            <div class="branch-header">
-              <span class="dot" aria-hidden="true"></span>
-              <span class="branch-title">Công nghệ &amp; Dữ liệu</span>
-              <span class="branch-sub">Tech &amp; Data</span>
-              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </div>
-            <div class="branch-content">
-              <ul>
-                <li>Cloud + microservices</li>
-                <li>Search/Recommend (AI/ML)</li>
-                <li>Risk/Fraud realtime</li>
-                <li>SLO 99.95%</li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- Branches: Right side -->
+          <!-- Right side -->
           <article class="branch right row-1" aria-expanded="true">
             <div class="branch-header">
               <span class="dot" aria-hidden="true"></span>
-              <span class="branch-title">Tài chính &amp; KPI</span>
-              <span class="branch-sub">Finance</span>
+              <span class="branch-title">E‑Support</span>
+              <span class="branch-sub">Hỗ trợ người bán</span>
               <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </div>
             <div class="branch-content">
               <ul>
-                <li>Take rate &amp; Ads revenue</li>
-                <li>CM2 ≥ 2–4% GMV</li>
-                <li>KPI: GMV, AOV, OTD, NPS</li>
+                <li>Công cụ quản lý gian hàng</li>
+                <li>Phân tích dữ liệu</li>
+                <li>Ví dụ: Seller Center, Lazada University</li>
               </ul>
+              <span class="tag">Seller tools</span>
             </div>
           </article>
 
           <article class="branch right row-2" aria-expanded="true">
             <div class="branch-header">
               <span class="dot" aria-hidden="true"></span>
-              <span class="branch-title">Rủi ro &amp; Pháp lý</span>
-              <span class="branch-sub">Risk &amp; Legal</span>
+              <span class="branch-title">E‑Marketing</span>
+              <span class="branch-sub">Marketing</span>
               <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </div>
             <div class="branch-content">
               <ul>
-                <li>Hàng giả &amp; gian lận</li>
-                <li>Dữ liệu cá nhân, thuế TMĐT</li>
+                <li>Quảng cáo, khuyến mãi, livestream</li>
+                <li>Data‑driven marketing</li>
+                <li>Ví dụ: Flash Sale, Mega 11.11, Livestream shop</li>
               </ul>
-            </div>
-          </article>
-
-          <article class="branch right row-3" aria-expanded="true">
-            <div class="branch-header">
-              <span class="dot" aria-hidden="true"></span>
-              <span class="branch-title">Roadmap 12 tháng</span>
-              <span class="branch-sub">Roadmap</span>
-              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </div>
-            <div class="branch-content">
-              <ul>
-                <li>Q1: Loyalty, vector search</li>
-                <li>Q2: FBL↑, COD −10pp</li>
-                <li>Q3: BNPL, OTD ≥95%</li>
-                <li>Q4: Ads ≥20% DT, auto-scale</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="branch right row-4" aria-expanded="true">
-            <div class="branch-header">
-              <span class="dot" aria-hidden="true"></span>
-              <span class="branch-title">Tổ chức</span>
-              <span class="branch-sub">Org</span>
-              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </div>
-            <div class="branch-content">
-              <ul>
-                <li>GM + 5 trụ</li>
-                <li>Squad theo hành trình</li>
-                <li>COE: AI/ML, SRE</li>
-              </ul>
+              <span class="tag">Campaign</span>
             </div>
           </article>
         </section>
